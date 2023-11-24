@@ -24,5 +24,21 @@ void Location::setNoSeats(int noSeats) {
 	this->noSeatsPerRow = noSeats;
 }
 
+void Location::setName(char* name) {
+	if (name == nullptr)
+		throw exception("Wrong input");
+
+	if (this->name != nullptr)
+		delete[] this->name;
+
+	this->name = new char[strlen(name) + 1];
+	for (int i = 0; i < strlen(name) + 1; i++)
+		this->name[i] = name[i];
+}
+
+Location::~Location() {
+	delete[] this->name;
+}
+
 int Location::getNoRows() { return this->noRows; }
 int Location::getNoSeats() { return this->noSeatsPerRow; }
