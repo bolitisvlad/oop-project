@@ -38,24 +38,26 @@ void Event::setDuration(int duration) {
 }
 
 void Event::setDate(string date) { // dd-mm-yyyy format
-	int day = atoi(date.substr(0, 2).c_str());
-	int month = atoi(date.substr(3, 2).c_str());
-	int year = atoi(date.substr(6, 4).c_str());
-	
-	if (month > 12 || month < 1)
-		throw exception("Wrong input");
+	if (date != "") {
+		int day = atoi(date.substr(0, 2).c_str());
+		int month = atoi(date.substr(3, 2).c_str());
+		int year = atoi(date.substr(6, 4).c_str());
 
-	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
-		throw exception("Wrong input");
+		if (month > 12 || month < 1)
+			throw exception("Wrong input");
 
-	if (month == 2 && year % 4 == 0 && day > 29)
-		throw exception("Wrong input");
+		if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+			throw exception("Wrong input");
 
-	if (day > 31 || day < 1)
-		throw exception("Wrong input");
+		if (month == 2 && year % 4 == 0 && day > 29)
+			throw exception("Wrong input");
 
-	if (year > maxYear || year < minYear)
-		throw exception("Wrong input");
+		if (day > 31 || day < 1)
+			throw exception("Wrong input");
+
+		if (year > maxYear || year < minYear)
+			throw exception("Wrong input");
+	}
 
 	this->date = date;
 }
@@ -75,6 +77,55 @@ string Event::getDate() { return this->date; }
 
 Event::~Event() {
 	delete[] this->name;
+}
+
+Event& Event::operator=(Event& event) {
+	if (this == &event)
+		return *this;
+
+	this->setName(event.name);
+	this->setDuration(event.duration);
+	this->setDate(event.date);
+
+	return *this;
+}
+
+ostream& operator<<(ostream& out, Event event) {
+	out << event.name << endl;
+	out << event.duration << endl;
+
+	if (event.date != "")
+		out << event.date << endl;
+
+	return out;
+}
+
+istream& operator>>(istream& in, Event& event) {
+	cout << endl << "Enter name: ";
+	string name;
+	getline(in, name);
+
+	if (event.name != nullptr)
+		delete[] event.name;
+
+	event.name = new char[name.length() + 1];
+	strcpy_s(event.name, name.length() + 1, name.c_str());
+
+	cout << endl << "Enter duration: ";
+
+	int duration;
+	in >> duration;
+
+	event.setDuration(duration);
+
+	cout << endl << "Enter date: ";
+
+	string date;
+	in >> date;
+
+	event.setDate(date);
+
+	return in;
 }
 
 int Event::maxYear = 2100;

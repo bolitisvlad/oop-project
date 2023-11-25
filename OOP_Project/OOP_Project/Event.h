@@ -7,7 +7,7 @@ using namespace std;
 class Event {
 	char* name = nullptr;
 	int duration = 0; //in minutes
-	string date = NULL; // dd-mm-yyyy format
+	string date = ""; // dd-mm-yyyy format
 
 	static int maxYear;
 	static int minYear;
@@ -17,8 +17,6 @@ public:
 	Event(char* name, int duration);
 
 	Event(Event& event);
-
-	~Event();
 
 	void setName(char* name);
 
@@ -31,4 +29,11 @@ public:
 	int getDuration();
 
 	string getDate();
+
+	~Event();
+
+	Event& operator=(Event& event);
+
+	friend ostream& operator<<(ostream& out, Event);
+	friend istream& operator>>(istream& in, Event&);
 };
