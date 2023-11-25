@@ -1,5 +1,6 @@
 #include "Event.h"
 #include <iostream>
+#include <String>
 
 using namespace std;
 
@@ -86,6 +87,18 @@ Event& Event::operator=(Event& event) {
 	this->setName(event.name);
 	this->setDuration(event.duration);
 	this->setDate(event.date);
+
+	return *this;
+}
+
+Event Event::operator++() {
+	this->duration += 60;
+	return *this;
+}
+
+Event Event::operator++(int) {
+	Event copy = *this;
+	this->duration += 60;
 
 	return *this;
 }

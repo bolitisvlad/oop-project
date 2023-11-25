@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include <String>
 
 using namespace std;
@@ -33,6 +33,10 @@ public:
 	~Event();
 
 	Event& operator=(Event& event);
+
+	Event operator++();
+
+	Event operator++(int);
 
 	friend ostream& operator<<(ostream& out, Event);
 	friend istream& operator>>(istream& in, Event&);
