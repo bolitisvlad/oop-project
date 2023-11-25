@@ -15,7 +15,7 @@ Event::Event(char* name, int duration) {
 	this->setDuration(duration);
 }
 
-Event::Event(Event& event) {
+Event::Event(const Event& event) {
 	this->setName(event.name);;
 	this->setDuration(event.duration);
 	this->setDate(event.date);
@@ -100,15 +100,15 @@ Event Event::operator++(int) {
 	Event copy = *this;
 	this->duration += 60;
 
-	return *this;
+	return copy;
 }
 
 ostream& operator<<(ostream& out, Event event) {
-	out << event.name << endl;
-	out << event.duration << endl;
+	out << endl << event.name;
+	out << endl << event.duration;
 
 	if (event.date != "")
-		out << event.date << endl;
+		out << endl << event.date;
 
 	return out;
 }

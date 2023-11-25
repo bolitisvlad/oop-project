@@ -16,7 +16,7 @@ public:
 
 	Event(char* name, int duration);
 
-	Event(Event& event);
+	Event(const Event& event);
 
 	void setName(char* name);
 
