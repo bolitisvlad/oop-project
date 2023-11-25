@@ -10,7 +10,7 @@ class Location {
 	int noSeatsPerRow;
 	char* name;
 public:
-	Location(char* name, int duration, string date);
+	Location(char* name, int noRows, int noSeatsPerRow);
 
 	Location(Location& event);
 
@@ -22,6 +22,9 @@ public:
 
 	void setName(char* name);
 
+	char* getName();
+
 	int getNoRows();
+
 	int getNoSeats();
 };

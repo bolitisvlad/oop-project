@@ -15,11 +15,10 @@ Event::Event(Event& event) {
 	this->setDate(event.date);
 }
 
-Event::~Event() {
-	delete[] name;
-}
-
 void Event::setName(char* name) {
+	if (strlen(name) < 1)
+		throw exception("Wrong input");
+
 	if (this->name != nullptr)
 		delete[] this->name;
 	this->name = new char[strlen(name) + 1];
@@ -35,9 +34,9 @@ void Event::setDuration(int duration) {
 
 void Event::setDate(string date) { // dd-mm-yyyy format
 	int day = atoi(date.substr(0, 2).c_str());
-	int month = atoi(date.substr(3, 5).c_str());
-	int year = atoi(date.substr(6, 8).c_str());
-
+	int month = atoi(date.substr(3, 2).c_str());
+	int year = atoi(date.substr(6, 4).c_str());
+	
 	if (month > 12 || month < 1)
 		throw exception("Wrong input");
 
@@ -49,7 +48,6 @@ void Event::setDate(string date) { // dd-mm-yyyy format
 
 	if (day > 31 || day < 1)
 		throw exception("Wrong input");
-
 
 	if (year > maxYear || year < minYear)
 		throw exception("Wrong input");
@@ -67,7 +65,12 @@ char* Event::getName() {
 }
 
 int Event::getDuration() { return this->duration; }
-string Event::gateDate() { return this->date; }
+
+string Event::getDate() { return this->date; }
+
+Event::~Event() {
+	delete[] this->name;
+}
 
 int Event::maxYear = 2100;
 int Event::minYear = 1000;

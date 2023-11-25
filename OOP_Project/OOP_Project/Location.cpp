@@ -3,12 +3,14 @@
 
 using namespace std;
 
-Location::Location(char* name, int duration, string date) {
+Location::Location(char* name,int noRows, int noSeatsPerRow) {
+	this->setName(name);
 	this->setNoRows(noRows);
 	this->setNoSeats(noSeatsPerRow);
 }
 
 Location::Location(Location& event) {
+	this->setName(name);
 	this->setNoRows(event.noRows);
 	this->setNoSeats(event.noSeatsPerRow);
 }
@@ -32,13 +34,23 @@ void Location::setName(char* name) {
 		delete[] this->name;
 
 	this->name = new char[strlen(name) + 1];
-	for (int i = 0; i < strlen(name) + 1; i++)
-		this->name[i] = name[i];
+	
+	strcpy_s(this->name, strlen(name) + 1, name);
 }
+
+char* Location::getName() {
+	char* nameCopy;
+	nameCopy = new char[strlen(this->name) + 1];
+
+	strcpy_s(nameCopy, strlen(this->name) + 1, name);
+
+	return nameCopy;
+}
+
+int Location::getNoRows() { return this->noRows; }
+
+int Location::getNoSeats() { return this->noSeatsPerRow; }
 
 Location::~Location() {
 	delete[] this->name;
 }
-
-int Location::getNoRows() { return this->noRows; }
-int Location::getNoSeats() { return this->noSeatsPerRow; }

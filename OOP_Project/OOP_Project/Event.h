@@ -27,5 +27,6 @@ public:
 	char* getName();
 
 	int getDuration();
-	string gateDate();
+
+	string getDate();
 };
