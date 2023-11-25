@@ -7,7 +7,7 @@ using namespace std;
 class Event {
 	char* name = nullptr;
 	int duration = 0; //in minutes
-	string date = NULL; // dd-mm-yyyy format
+	string date = ""; // dd-mm-yyyy format
 
 	static int maxYear;
 	static int minYear;
