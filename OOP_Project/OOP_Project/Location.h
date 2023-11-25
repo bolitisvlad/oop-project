@@ -14,9 +14,7 @@ public:
 
 	Location(char* name);
 
-	Location(Location& event);
-
-	~Location();
+	Location(const Location& event);
 
 	void setNoRows(int noRows);
 
@@ -29,4 +27,17 @@ public:
 	int getNoRows();
 
 	int getNoSeats();
+
+	Location& operator=(Location& location);
+
+	Location& operator+(int value);
+
+	Location operator++();
+
+	Location operator++(int i);
+
+	friend ostream& operator<<(ostream& out, Location);
+	friend istream& operator>>(istream& in, Location&);
+
+	~Location();
 };

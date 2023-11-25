@@ -13,11 +13,12 @@ Location::Location(char* name) {
 	this->setName(name);
 }
 
-Location::Location(Location& event) {
-	this->setName(name);
+Location::Location(const Location& event) {
+	this->setName(event.name);
 	this->setNoRows(event.noRows);
 	this->setNoSeats(event.noSeatsPerRow);
 }
+
 void Location::setNoRows(int noRows) {
 	if (noRows < 1)
 		throw exception("Wrong input");
@@ -54,6 +55,64 @@ char* Location::getName() {
 int Location::getNoRows() { return this->noRows; }
 
 int Location::getNoSeats() { return this->noSeatsPerRow; }
+
+Location& Location::operator=(Location& location) {
+	if (this == &location)
+		return *this;
+
+	this->setName(location.name);
+	this->setNoRows(location.noRows);
+	this->setNoSeats(location.noSeatsPerRow);
+
+	return *this;
+}
+
+Location& Location::operator+(int value) {
+	this->noSeatsPerRow += value;
+
+	return *this;
+}
+
+Location Location::operator++() {
+	this->noSeatsPerRow++;
+
+	return *this;
+}
+
+Location Location::operator++(int i) {
+	Location copy = *this;
+	this->noSeatsPerRow++;
+	
+	return copy;
+}
+
+ostream& operator<<(ostream& out, Location location) {
+	out << endl << location.name;
+	out << endl << location.noRows;
+	out << endl << location.noSeatsPerRow;
+
+	return out;
+}
+
+istream& operator>>(istream& in, Location& location) {
+	cout << endl << "Enter name: ";
+	string name;
+	getline(in, name);
+
+	if (location.name != nullptr)
+		delete[] location.name;
+
+	location.name = new char[strlen(name.c_str()) + 1];
+	strcpy_s(location.name, strlen(name.c_str()) + 1, name.c_str());
+
+	cout << endl << "Enter number of rows: ";
+	in >> location.noRows;
+
+	cout << endl << "Enter number of seats per row: ";
+	in >> location.noSeatsPerRow;
+
+	return in;
+}
 
 Location::~Location() {
 	delete[] this->name;
