@@ -9,6 +9,11 @@ Event::Event(char* name, int duration, string date) {
 	this->setDate(date);
 }
 
+Event::Event(char* name, int duration) {
+	this->setName(name);
+	this->setDuration(duration);
+}
+
 Event::Event(Event& event) {
 	this->setName(event.name);;
 	this->setDuration(event.duration);

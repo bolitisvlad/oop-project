@@ -5,14 +5,16 @@
 using namespace std;
 
 class Event {
-	char* name;
-	int duration; //in minutes
-	string date; // dd-mm-yyyy format
+	char* name = nullptr;
+	int duration = 0; //in minutes
+	string date = NULL; // dd-mm-yyyy format
 
 	static int maxYear;
 	static int minYear;
 public:
 	Event(char* name, int duration, string date);
+
+	Event(char* name, int duration);
 
 	Event(Event& event);
 

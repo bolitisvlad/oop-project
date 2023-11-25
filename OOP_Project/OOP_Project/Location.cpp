@@ -9,6 +9,10 @@ Location::Location(char* name,int noRows, int noSeatsPerRow) {
 	this->setNoSeats(noSeatsPerRow);
 }
 
+Location::Location(char* name) {
+	this->setName(name);
+}
+
 Location::Location(Location& event) {
 	this->setName(name);
 	this->setNoRows(event.noRows);

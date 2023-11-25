@@ -6,11 +6,13 @@
 using namespace std;
 
 class Location {
-	int noRows;
-	int noSeatsPerRow;
-	char* name;
+	char* name = nullptr;
+	int noRows = 0;
+	int noSeatsPerRow = 0;
 public:
 	Location(char* name, int noRows, int noSeatsPerRow);
+
+	Location(char* name);
 
 	Location(Location& event);
 
