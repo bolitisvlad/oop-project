@@ -46,6 +46,8 @@ public:
 
 	bool operator!();
 
+	bool operator>(Event& event);
+
 	friend ostream& operator<<(ostream& out, Event);
 	friend istream& operator>>(istream& in, Event&);
 };

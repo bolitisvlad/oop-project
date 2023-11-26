@@ -42,6 +42,8 @@ public:
 
 	bool operator==(Location& location);
 
+	bool operator>(Location& location);
+
 	friend ostream& operator<<(ostream& out, Location);
 	friend istream& operator>>(istream& in, Location&);
 

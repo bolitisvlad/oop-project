@@ -127,6 +127,9 @@ bool Event::operator==(Event& event) {
 		&& date == event.date;
 }
 
+bool Event::operator>(Event& event) {
+	return duration > event.duration;
+}
 
 ostream& operator<<(ostream& out, Event event) {
 	out << endl << event.name;

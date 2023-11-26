@@ -104,6 +104,10 @@ bool Location::operator==(Location& location) {
 		&& noSeatsPerRow == location.noSeatsPerRow;
 }
 
+bool Location::operator>(Location& location) {
+	return noRows > location.noRows;
+}
+
 ostream& operator<<(ostream& out, Location location) {
 	out << endl << location.name;
 	out << endl << location.noRows;
