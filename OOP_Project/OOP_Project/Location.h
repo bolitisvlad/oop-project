@@ -36,6 +36,8 @@ public:
 
 	Location operator++(int i);
 
+	operator int();
+
 	friend ostream& operator<<(ostream& out, Location);
 	friend istream& operator>>(istream& in, Location&);
 

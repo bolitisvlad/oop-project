@@ -40,6 +40,8 @@ public:
 
 	Event operator++(int);
 
+	operator int();
+
 	friend ostream& operator<<(ostream& out, Event);
 	friend istream& operator>>(istream& in, Event&);
 };

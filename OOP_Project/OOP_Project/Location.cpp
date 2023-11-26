@@ -86,6 +86,10 @@ Location Location::operator++(int i) {
 	return copy;
 }
 
+Location::operator int(){
+	return this->noRows;
+}
+
 ostream& operator<<(ostream& out, Location location) {
 	out << endl << location.name;
 	out << endl << location.noRows;

@@ -109,6 +109,10 @@ Event Event::operator++(int) {
 	return copy;
 }
 
+Event::operator int() {
+	return duration;
+}
+
 ostream& operator<<(ostream& out, Event event) {
 	out << endl << event.name;
 	out << endl << event.duration;
