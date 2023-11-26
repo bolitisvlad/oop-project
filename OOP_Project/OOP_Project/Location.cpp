@@ -90,6 +90,20 @@ Location::operator int(){
 	return this->noRows;
 }
 
+bool Location::operator!() {
+	if (this->noSeatsPerRow < 10)
+		return false;
+	return true;
+}
+
+bool Location::operator==(Location& location) {
+	for (int i = 0; i < strlen(name) + 1; i++)
+		if (name[i] != location.name[i])
+			return false;
+	return noRows == location.noRows
+		&& noSeatsPerRow == location.noSeatsPerRow;
+}
+
 ostream& operator<<(ostream& out, Location location) {
 	out << endl << location.name;
 	out << endl << location.noRows;

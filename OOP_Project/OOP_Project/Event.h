@@ -40,7 +40,11 @@ public:
 
 	Event operator++(int);
 
+	bool operator==(Event& event);
+
 	operator int();
+
+	bool operator!();
 
 	friend ostream& operator<<(ostream& out, Event);
 	friend istream& operator>>(istream& in, Event&);

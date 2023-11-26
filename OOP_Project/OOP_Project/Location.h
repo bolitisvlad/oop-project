@@ -38,6 +38,10 @@ public:
 
 	operator int();
 
+	bool operator!();
+
+	bool operator==(Location& location);
+
 	friend ostream& operator<<(ostream& out, Location);
 	friend istream& operator>>(istream& in, Location&);
 

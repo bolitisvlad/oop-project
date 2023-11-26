@@ -113,6 +113,21 @@ Event::operator int() {
 	return duration;
 }
 
+bool Event::operator!() {
+	if (this->duration < 30)
+		return false;
+	return true;
+}
+
+bool Event::operator==(Event& event) {
+	for (int i = 0; i < strlen(name) + 1; i++)
+		if (name[i] != event.name[i])
+			return false;
+	return duration == event.duration
+		&& date == event.date;
+}
+
+
 ostream& operator<<(ostream& out, Event event) {
 	out << endl << event.name;
 	out << endl << event.duration;
