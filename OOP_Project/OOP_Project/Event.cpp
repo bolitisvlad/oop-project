@@ -91,6 +91,12 @@ Event& Event::operator=(Event& event) {
 	return *this;
 }
 
+Event& Event::operator+(int value) {
+	this->duration += value;
+
+	return *this;
+}
+
 Event Event::operator++() {
 	this->duration += 60;
 	return *this;

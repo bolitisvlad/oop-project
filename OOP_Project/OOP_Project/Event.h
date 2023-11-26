@@ -34,6 +34,8 @@ public:
 
 	Event& operator=(Event& event);
 
+	Event& operator+(int value);
+
 	Event operator++();
 
 	Event operator++(int);
