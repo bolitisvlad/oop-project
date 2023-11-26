@@ -14,11 +14,11 @@ public:
 
 	Location(char* name);
 
-	Location(const Location& event);
+	Location(const Location& location);
 
 	void setNoRows(int noRows);
 
-	void setNoSeats(int noSeats);
+	void setNoSeatsPerRow(int noSeats);
 
 	void setName(char* name);
 
@@ -26,7 +26,7 @@ public:
 
 	int getNoRows();
 
-	int getNoSeats();
+	int getNoSeatsPerRow();
 
 	Location& operator=(Location& location);
 

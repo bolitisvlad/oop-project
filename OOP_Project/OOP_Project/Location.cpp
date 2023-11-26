@@ -6,17 +6,17 @@ using namespace std;
 Location::Location(char* name,int noRows, int noSeatsPerRow) {
 	this->setName(name);
 	this->setNoRows(noRows);
-	this->setNoSeats(noSeatsPerRow);
+	this->setNoSeatsPerRow(noSeatsPerRow);
 }
 
 Location::Location(char* name) {
 	this->setName(name);
 }
 
-Location::Location(const Location& event) {
-	this->setName(event.name);
-	this->setNoRows(event.noRows);
-	this->setNoSeats(event.noSeatsPerRow);
+Location::Location(const Location& location) {
+	this->setName(location.name);
+	this->setNoRows(location.noRows);
+	this->setNoSeatsPerRow(location.noSeatsPerRow);
 }
 
 void Location::setNoRows(int noRows) {
@@ -25,7 +25,7 @@ void Location::setNoRows(int noRows) {
 	this->noRows = noRows;
 }
 
-void Location::setNoSeats(int noSeats) {
+void Location::setNoSeatsPerRow(int noSeats) {
 	if (noSeats < 1)
 		throw exception("Wrong input");
 	this->noSeatsPerRow = noSeats;
@@ -54,7 +54,7 @@ char* Location::getName() {
 
 int Location::getNoRows() { return this->noRows; }
 
-int Location::getNoSeats() { return this->noSeatsPerRow; }
+int Location::getNoSeatsPerRow() { return this->noSeatsPerRow; }
 
 Location& Location::operator=(Location& location) {
 	if (this == &location)
@@ -62,7 +62,7 @@ Location& Location::operator=(Location& location) {
 
 	this->setName(location.name);
 	this->setNoRows(location.noRows);
-	this->setNoSeats(location.noSeatsPerRow);
+	this->setNoSeatsPerRow(location.noSeatsPerRow);
 
 	return *this;
 }
