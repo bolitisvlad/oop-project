@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include "Location.h"
 
 using namespace std;
 
@@ -10,19 +9,23 @@ enum vip {
 };
 
 class Ticket{
-	static int id;
+	int id = 0;
 	int row = 0;
 	int seat = 0;
 	int noRows = 0;
 	int noSeatsPerRow = 0;
 	vip isVip = Default;
+	const int vipRowAray[3] = {3,4,5};
 	static int** rowMatrix;
+	static int noId;
 public:
-	Ticket(int row, int seat, int noRows, int noSeatsPerRow, vip isVip);
+	Ticket(int id, int row, int seat, int noRows, int noSeatsPerRow, vip isVip);
 
-	Ticket(int row, int seat, int noRows, int noSeatsPerRow);
+	Ticket(int id, int row, int seat, int noRows, int noSeatsPerRow);
 
 	Ticket(const Ticket& ticket);
+
+	void setId(int id);
 
 	void setRows(int row);
 
@@ -41,6 +44,26 @@ public:
 	int getNoSeatsPerRow();
 
 	void createRowMatrix();
+
+	void fillRowMatrix();
+
+	Ticket& operator=(Ticket& ticket);
+
+	Ticket& operator+(int value);
+
+	Ticket operator++();
+
+	Ticket operator++(int);
+
+	operator int();
+
+	bool operator==(Ticket& ticket);
+
+	bool operator>(Ticket& ticket);
+
+
+	friend ostream& operator<<(ostream& out, Ticket);
+	friend istream& operator>>(istream& in, Ticket&);
 
 	~Ticket();
 };
