@@ -14,13 +14,15 @@ class Location {
 	vector<vector<int>> layout;
 
 	vector<int> vipRows;
-
 public:
-	Location(const string name, int noRows, int noSeatsPerRow, const vector<int> vipRows);
+
+	Location(string name, int noRows, int noSeatsPerRow,vector<int> vipRows);
 
 	Location(string name);
 
 	Location(const Location& location);
+
+	void setVipRows(vector<int> vipRows);
 
 	void setNoRows(int noRows);
 

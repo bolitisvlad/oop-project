@@ -10,6 +10,7 @@
 using namespace std;
 
 void displayMenu() {
+	cout << endl;
 	cout << "[1] Create Location\n";
 	cout << "[2] Create Event\n";
 	cout << "[3] Buy Ticket\n";
@@ -22,33 +23,55 @@ int main(int argc, char* argv[]) {
 	}
 
 	int choice;
+
+	vector<Location> locations;
+	vector<Event> events;
+	vector<Ticket> tickets;
+
 	do {
-		displayMenu();
-
-		cout << "Enter your choise: ";
-		cin >> choice;
-
-		switch (choice)
+		try
 		{
-		case 1: {
-			Location location("Default");
-			cin >> location;
-			break;
-		}
+			displayMenu();
 
-		case 2: {
-			break;
-		}
+			cout << "Enter your choise: ";
+			cin >> choice;
 
-		case 3: {
-			break;
-		}
-
-		default:
-			if (choice != 4) {
-				cout << "\nWrong input\n";
+			switch (choice)
+			{
+			case 1: {
+				Location location("Default");
+				cin >> location;
+				locations.push_back(location);
+				for (const Location& l : locations) {
+					cout << l << endl;
+				}
+				break;
 			}
-			break;
+
+			case 2: {
+				Event event("Default", 0);
+				cin >> event;
+				cout << event;
+				events.push_back(event);
+				break;
+			}
+
+			case 3: {
+				Ticket ticket(0, 0, 0, 0, locations[0]);
+				cin >> ticket;
+				break;
+			}
+
+			default:
+				if (choice != 4) {
+					cout << "\nWrong input\n";
+				}
+				break;
+			}
+		}
+		catch (const std::exception&)
+		{
+			cout << "\nWrong input! Try again: \n";
 		}
 
 	} while (choice != 4);

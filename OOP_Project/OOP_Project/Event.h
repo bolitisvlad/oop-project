@@ -5,26 +5,26 @@
 using namespace std;
 
 class Event {
-	char* name = nullptr;
+	string  name;
 	int duration = 0; //in minutes
 	string date = ""; // dd-mm-yyyy format
 
 	static int maxYear;
 	static int minYear;
 public:
-	Event(char* name, int duration, string date);
+	Event(string name, int duration, string date);
 
-	Event(char* name, int duration);
+	Event(string name, int duration);
 
 	Event(const Event& event);
 
-	void setName(char* name);
+	void setName(string  name);
 
 	void setDuration(int duration);
 
 	void setDate(string date);
 
-	char* getName();
+	string  getName();
 
 	int getDuration();
 
@@ -40,7 +40,7 @@ public:
 
 	Event operator++(int);
 
-	bool operator==(Event& event);
+	/*bool operator==(Event& event);*/
 
 	operator int();
 

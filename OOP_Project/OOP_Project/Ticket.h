@@ -30,5 +30,9 @@ public:
 
 	int getSeat();
 
+	friend ostream& operator<<(ostream& out, Ticket);
+
+	friend istream& operator>>(istream& in, Ticket&);
+
 	~Ticket();
 };

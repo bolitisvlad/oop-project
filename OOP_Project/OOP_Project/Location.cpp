@@ -3,21 +3,33 @@
 
 using namespace std;
 
-Location::Location(string name,int noRows, int noSeatsPerRow, vector<int> vipRows) :layout(noRows, vector<int>(noSeatsPerRow, 0)) {
+Location::Location(string name,int noRows, int noSeatsPerRow, vector<int> vipRows) : layout(noRows, vector<int>(noSeatsPerRow, 0)) {
 	this->setName(name);
 	this->setNoRows(noRows);
 	this->setNoSeatsPerRow(noSeatsPerRow);
-	this->vipRows = vipRows;
+	this->setVipRows(vipRows);
 }
 
 Location::Location(string name) {
 	this->setName(name);
 }
 
-Location::Location(const Location& location) {
+Location::Location(const Location& location) : layout(location.noRows, vector<int>(location.noSeatsPerRow, 0)) {
 	this->setName(location.name);
 	this->setNoRows(location.noRows);
 	this->setNoSeatsPerRow(location.noSeatsPerRow);
+	this->setVipRows(location.vipRows);
+}
+
+void Location::setVipRows(vector<int> vipRows) {
+	for (int i : vipRows) {
+		if (i < 0)
+			throw exception("Wrong Input");
+		if(i > this->noRows)
+			throw exception("Wrong Input");
+	}
+
+	this->vipRows = vipRows;
 }
 
 void Location::setNoRows(int noRows) {
@@ -100,11 +112,12 @@ bool Location::operator>(Location& location) {
 	return noRows > location.noRows;
 }
 
-ostream& operator<<(ostream& out, Location location) {
+ostream& operator<<(ostream& out,Location location) {
 	out << endl << location.name;
 	out << endl << location.noRows;
 	out << endl << location.noSeatsPerRow;
-
+	for (int element : location.vipRows)
+		out << endl << element;
 	return out;
 }
 
@@ -127,6 +140,10 @@ istream& operator>>(istream& in, Location& location) {
 	for (int i = 0; i < nr; i++) {
 		cout << endl << "Enter the row number: ";
 		cin >> input;
+		for (int j : location.vipRows) {
+			if (j == input)
+				throw exception("Wrong input");
+		}
 		location.vipRows.push_back(input);
 	}
 

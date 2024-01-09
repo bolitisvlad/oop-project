@@ -4,13 +4,13 @@
 
 using namespace std;
 
-Event::Event(char* name, int duration, string date) {
+Event::Event(string  name, int duration, string date) {
 	this->setName(name);
 	this->setDuration(duration);
 	this->setDate(date);
 }
 
-Event::Event(char* name, int duration) {
+Event::Event(string  name, int duration) {
 	this->setName(name);
 	this->setDuration(duration);
 }
@@ -21,15 +21,8 @@ Event::Event(const Event& event) {
 	this->setDate(event.date);
 }
 
-void Event::setName(char* name) {
-	if (strlen(name) < 1)
-		throw exception("Wrong input");
-
-	if (this->name != nullptr)
-		delete[] this->name;
-	this->name = new char[strlen(name) + 1];
-
-	strcpy_s(this->name, strlen(name) + 1, name);
+void Event::setName(string  name) {
+	this->name = name;
 }
 
 void Event::setDuration(int duration) {
@@ -63,13 +56,8 @@ void Event::setDate(string date) { // dd-mm-yyyy format
 	this->date = date;
 }
 
-char* Event::getName() {
-	char* nameCopy;
-	nameCopy = new char[strlen(this->name) + 1];
-
-	strcpy_s(nameCopy, strlen(this->name) + 1, name);
-
-	return nameCopy;
+string  Event::getName() {
+	return this->name;
 }
 
 int Event::getDuration() { return this->duration; }
@@ -77,7 +65,6 @@ int Event::getDuration() { return this->duration; }
 string Event::getDate() { return this->date; }
 
 Event::~Event() {
-	delete[] this->name;
 }
 
 Event& Event::operator=(Event& event) {
@@ -119,13 +106,13 @@ bool Event::operator!() {
 	return true;
 }
 
-bool Event::operator==(Event& event) {
-	for (int i = 0; i < strlen(name) + 1; i++)
-		if (name[i] != event.name[i])
-			return false;
-	return duration == event.duration
-		&& date == event.date;
-}
+//bool Event::operator==(Event& event) {
+//	for (int i = 0; i < strlen(name) + 1; i++)
+//		if (name[i] != event.name[i])
+//			return false;
+//	return duration == event.duration
+//		&& date == event.date;
+//}
 
 bool Event::operator>(Event& event) {
 	return duration > event.duration;
@@ -136,21 +123,15 @@ ostream& operator<<(ostream& out, Event event) {
 	out << endl << event.duration;
 
 	if (event.date != "")
-		out << endl << event.date;
+		out << endl << event.date << endl;
 
 	return out;
 }
 
 istream& operator>>(istream& in, Event& event) {
 	cout << endl << "Enter name: ";
-	string name;
-	getline(in, name);
-
-	if (event.name != nullptr)
-		delete[] event.name;
-
-	event.name = new char[name.length() + 1];
-	strcpy_s(event.name, name.length() + 1, name.c_str());
+	cin.ignore();
+	getline(in, event.name);
 
 	cout << endl << "Enter duration: ";
 
@@ -169,5 +150,5 @@ istream& operator>>(istream& in, Event& event) {
 	return in;
 }
 
-int Event::maxYear = 2100;
+int Event::maxYear = 2999;
 int Event::minYear = 1000;
