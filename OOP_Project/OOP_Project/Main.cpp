@@ -20,24 +20,22 @@ int main(int argc, char* argv[]) {
 
 	}
 
-	else {
-		int choice;
+	int choice;
 
-		do {
-			displayMenu();
+	do {
+		displayMenu();
 
-			cout << "Enter your choise: ";
-			cin >> choice;
+		cout << "Enter your choise: ";
+		cin >> choice;
 
-			switch (choice)
-			{
-			case 1: {}
+		switch (choice)
+		{
+		case 1: {}
 
-			case 2: {}
+		case 2: {}
 
-			case 3: {}
-			}
+		case 3: {}
+		}
 
-		} while (choice != 4);
-	}
+	} while (choice != 4);
 }

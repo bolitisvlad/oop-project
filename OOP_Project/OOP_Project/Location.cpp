@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Location::Location(char* name,int noRows, int noSeatsPerRow) {
+Location::Location(char* name,int noRows, int noSeatsPerRow) :layout(noRows, vector<int>(noSeatsPerRow, 0)) {
 	this->setName(name);
 	this->setNoRows(noRows);
 	this->setNoSeatsPerRow(noSeatsPerRow);

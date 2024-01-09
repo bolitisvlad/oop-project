@@ -2,18 +2,17 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
-
-enum vip {
-	Default = 0,
-	VIP = 1
-};
 
 class Location {
 	char* name = nullptr;
 	int noRows = 0;
 	int noSeatsPerRow = 0;
+
+	vector<vector<int>> layout;
+
 public:
 	Location(char* name, int noRows, int noSeatsPerRow);
 
@@ -32,6 +31,17 @@ public:
 	int getNoRows();
 
 	int getNoSeatsPerRow();
+
+	void printVect() {
+		for (int i = 0; i < layout.size(); i++)
+		{
+			for (int j = 0; j < layout[i].size(); j++)
+			{
+				cout << layout[i][j] << " ";
+			}
+			cout << endl;
+		}
+	}
 
 	Location& operator=(Location& location);
 
