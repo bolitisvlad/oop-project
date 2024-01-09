@@ -5,6 +5,11 @@
 
 using namespace std;
 
+enum vip {
+	Default = 0,
+	VIP = 1
+};
+
 class Location {
 	char* name = nullptr;
 	int noRows = 0;
