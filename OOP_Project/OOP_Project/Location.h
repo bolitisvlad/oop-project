@@ -14,6 +14,7 @@ class Location {
 	vector<vector<int>> layout;
 
 	vector<int> vipRows;
+
 public:
 
 	Location(string name, int noRows, int noSeatsPerRow,vector<int> vipRows);

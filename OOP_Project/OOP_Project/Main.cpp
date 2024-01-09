@@ -57,6 +57,10 @@ int main(int argc, char* argv[]) {
 			}
 
 			case 3: {
+				if (locations.empty()) {
+					cout << "\nNo locations available \n";
+					break;
+				}
 				Ticket ticket(0, 0, 0, 0, locations[0]);
 				cin >> ticket;
 				break;
