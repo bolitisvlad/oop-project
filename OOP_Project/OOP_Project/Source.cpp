@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 #include "Event.h"
 #include "Location.h"
@@ -7,27 +8,36 @@
 
 using namespace std;
 
-int main() {
-	cout << "[1] Use file" << endl << "[2] Use CLI" << endl << "Enter your choise: ";
-	int answer;
-	cin >> answer;
+void displayMenu() {
+	cout << "[1] Create Location\n";
+	cout << "[2] Create Event\n";
+	cout << "[3] Create Ticket\n";
+	cout << "[4] Exit\n";
+}
 
-	string fileName;
+int main(int argc, char* argv[]) {
+	if (argc == 2) {
 
-	if (answer == 1) {
-		cout << "Enter file name: ";
-		cin >> fileName;
-
-		ifstream file(fileName);
-
-		if (file.is_open()) {
-
-		}
-
-		file.close();
 	}
 
-	if (answer == 2) {
+	else {
+		int choice;
 
+		do {
+			displayMenu();
+
+			cout << "Enter your choise: ";
+			cin >> choice;
+
+			switch (choice)
+			{
+			case 1: {}
+
+			case 2: {}
+
+			case 3: {}
+			}
+
+		} while (choice != 4);
 	}
 }
