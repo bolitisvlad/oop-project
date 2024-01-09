@@ -56,6 +56,17 @@ int Location::getNoRows() { return this->noRows; }
 
 int Location::getNoSeatsPerRow() { return this->noSeatsPerRow; }
 
+void Location::printVect() {
+	for (int i = 0; i < layout.size(); i++)
+	{
+		for (int j = 0; j < layout[i].size(); j++)
+		{
+			cout << layout[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
 Location& Location::operator=(Location& location) {
 	if (this == &location)
 		return *this;

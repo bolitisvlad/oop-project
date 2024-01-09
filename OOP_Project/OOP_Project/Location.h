@@ -32,16 +32,7 @@ public:
 
 	int getNoSeatsPerRow();
 
-	void printVect() {
-		for (int i = 0; i < layout.size(); i++)
-		{
-			for (int j = 0; j < layout[i].size(); j++)
-			{
-				cout << layout[i][j] << " ";
-			}
-			cout << endl;
-		}
-	}
+	void printVect();
 
 	Location& operator=(Location& location);
 
