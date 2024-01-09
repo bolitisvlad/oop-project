@@ -7,16 +7,18 @@
 using namespace std;
 
 class Location {
-	char* name = nullptr;
+	string name;
 	int noRows = 0;
 	int noSeatsPerRow = 0;
 
 	vector<vector<int>> layout;
 
-public:
-	Location(char* name, int noRows, int noSeatsPerRow);
+	vector<int> vipRows;
 
-	Location(char* name);
+public:
+	Location(const string name, int noRows, int noSeatsPerRow, const vector<int> vipRows);
+
+	Location(string name);
 
 	Location(const Location& location);
 
@@ -24,9 +26,9 @@ public:
 
 	void setNoSeatsPerRow(int noSeats);
 
-	void setName(char* name);
+	void setName(string name);
 
-	char* getName();
+	string getName();
 
 	int getNoRows();
 

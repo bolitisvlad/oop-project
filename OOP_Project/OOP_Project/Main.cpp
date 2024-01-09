@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
 #include "Event.h"
 #include "Location.h"
@@ -11,7 +12,7 @@ using namespace std;
 void displayMenu() {
 	cout << "[1] Create Location\n";
 	cout << "[2] Create Event\n";
-	cout << "[3] Create Ticket\n";
+	cout << "[3] Buy Ticket\n";
 	cout << "[4] Exit\n";
 }
 
@@ -21,7 +22,6 @@ int main(int argc, char* argv[]) {
 	}
 
 	int choice;
-
 	do {
 		displayMenu();
 
@@ -30,11 +30,25 @@ int main(int argc, char* argv[]) {
 
 		switch (choice)
 		{
-		case 1: {}
+		case 1: {
+			Location location("Default");
+			cin >> location;
+			break;
+		}
 
-		case 2: {}
+		case 2: {
+			break;
+		}
 
-		case 3: {}
+		case 3: {
+			break;
+		}
+
+		default:
+			if (choice != 4) {
+				cout << "\nWrong input\n";
+			}
+			break;
 		}
 
 	} while (choice != 4);

@@ -3,13 +3,14 @@
 
 using namespace std;
 
-Location::Location(char* name,int noRows, int noSeatsPerRow) :layout(noRows, vector<int>(noSeatsPerRow, 0)) {
+Location::Location(string name,int noRows, int noSeatsPerRow, vector<int> vipRows) :layout(noRows, vector<int>(noSeatsPerRow, 0)) {
 	this->setName(name);
 	this->setNoRows(noRows);
 	this->setNoSeatsPerRow(noSeatsPerRow);
+	this->vipRows = vipRows;
 }
 
-Location::Location(char* name) {
+Location::Location(string name) {
 	this->setName(name);
 }
 
@@ -31,25 +32,12 @@ void Location::setNoSeatsPerRow(int noSeats) {
 	this->noSeatsPerRow = noSeats;
 }
 
-void Location::setName(char* name) {
-	if (name == nullptr)
-		throw exception("Wrong input");
-
-	if (this->name != nullptr)
-		delete[] this->name;
-
-	this->name = new char[strlen(name) + 1];
-	
-	strcpy_s(this->name, strlen(name) + 1, name);
+void Location::setName(string name) {
+	this->name = name;
 }
 
-char* Location::getName() {
-	char* nameCopy;
-	nameCopy = new char[strlen(this->name) + 1];
-
-	strcpy_s(nameCopy, strlen(this->name) + 1, name);
-
-	return nameCopy;
+string Location::getName() {
+	return this->name;
 }
 
 int Location::getNoRows() { return this->noRows; }
@@ -107,13 +95,6 @@ bool Location::operator!() {
 	return true;
 }
 
-bool Location::operator==(Location& location) {
-	for (int i = 0; i < strlen(name) + 1; i++)
-		if (name[i] != location.name[i])
-			return false;
-	return noRows == location.noRows
-		&& noSeatsPerRow == location.noSeatsPerRow;
-}
 
 bool Location::operator>(Location& location) {
 	return noRows > location.noRows;
@@ -129,14 +110,8 @@ ostream& operator<<(ostream& out, Location location) {
 
 istream& operator>>(istream& in, Location& location) {
 	cout << endl << "Enter name: ";
-	string name;
-	getline(in, name);
-
-	if (location.name != nullptr)
-		delete[] location.name;
-
-	location.name = new char[strlen(name.c_str()) + 1];
-	strcpy_s(location.name, strlen(name.c_str()) + 1, name.c_str());
+	cin.ignore();
+	getline(in, location.name);
 
 	cout << endl << "Enter number of rows: ";
 	in >> location.noRows;
@@ -144,9 +119,19 @@ istream& operator>>(istream& in, Location& location) {
 	cout << endl << "Enter number of seats per row: ";
 	in >> location.noSeatsPerRow;
 
+	int nr;
+	
+	cout << endl << "Enter the number of vip rows: ";
+	cin >> nr;
+	int input;
+	for (int i = 0; i < nr; i++) {
+		cout << endl << "Enter the row number: ";
+		cin >> input;
+		location.vipRows.push_back(input);
+	}
+
 	return in;
 }
 
 Location::~Location() {
-	delete[] this->name;
 }

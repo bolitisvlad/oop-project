@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "Location.h"
 
 using namespace std;
 
@@ -8,8 +9,10 @@ class Ticket{
 	int row = 0;
 	int seat = 0;
 	bool isVip;
+
+	Location& location;
 public:
-	Ticket(int id, int row, int seat, bool isVip);
+	Ticket(int id, int row, int seat, bool isVip, Location& location);
 
 	Ticket(const Ticket& ticket);
 

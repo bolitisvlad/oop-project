@@ -1,14 +1,15 @@
 #include<iostream>
 #include"Ticket.h"
 
-Ticket::Ticket(int id, int row, int seat, bool isVip) {
+
+Ticket::Ticket(int id, int row, int seat, bool isVip, Location& location) : location(location){
 	this->setId(id);
 	this->setRow(row);
 	this->setSeat(seat);
 	this->setVip(isVip);
 }
 
-Ticket::Ticket(const Ticket& ticket) {
+Ticket::Ticket(const Ticket& ticket) : location(ticket.location) {
 	this->setId(ticket.id);
 	this->setRow(ticket.row);
 	this->setSeat(ticket.seat);
