@@ -3,10 +3,11 @@
 
 using namespace std;
 
-Location::Location(string name,int noRows, int noSeatsPerRow, vector<int> vipRows) : layout(noRows, vector<int>(noSeatsPerRow, 0)) {
+Location::Location(string name,int noRows, int noSeatsPerRow, int noVip, vector<int> vipRows) : layout(noRows, vector<int>(noSeatsPerRow, 0)) {
 	this->setName(name);
 	this->setNoRows(noRows);
 	this->setNoSeatsPerRow(noSeatsPerRow);
+	this->noVip = noVip;
 	this->setVipRows(vipRows);
 }
 
@@ -106,7 +107,6 @@ bool Location::operator!() {
 		return false;
 	return true;
 }
-
 
 bool Location::operator>(Location& location) {
 	return noRows > location.noRows;

@@ -10,6 +10,7 @@ class Location {
 	string name;
 	int noRows = 0;
 	int noSeatsPerRow = 0;
+	int noVip = 0;
 
 	vector<vector<int>> layout;
 
@@ -17,7 +18,7 @@ class Location {
 
 public:
 
-	Location(string name, int noRows, int noSeatsPerRow,vector<int> vipRows);
+	Location(string name, int noRows, int noSeatsPerRow, int noVip, vector<int> vipRows);
 
 	Location(string name);
 
@@ -50,8 +51,6 @@ public:
 	operator int();
 
 	bool operator!();
-
-	bool operator==(Location& location);
 
 	bool operator>(Location& location);
 

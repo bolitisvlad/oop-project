@@ -32,6 +32,8 @@ void Ticket::setVip(bool isVip){
 	this->isVip = isVip;
 }
 
+bool Ticket::getVip() { return this->isVip; }
+
 int Ticket::getId() { return this->id; }
 
 int Ticket::getRow() { return this->row; }
@@ -39,12 +41,12 @@ int Ticket::getRow() { return this->row; }
 int Ticket::getSeat() { return this->seat; }
 
 ostream& operator<<(ostream& out, Ticket ticket) {
-	out << endl << "Ticket id:" << ticket.id;
-	out << endl << "Ticket row: " << ticket.row;
-	out << endl << "Ticket seat: " << ticket.seat;
+	out << endl << ticket.id;
+	out << endl  << ticket.row;
+	out << endl << ticket.seat;
 	if (ticket.isVip == 0)
-		out << endl << "Ticket type: " << "Default";
-	else out << endl << "Ticket type: " << "VIP";
+		out << endl  << "Default";
+	else out << endl << "VIP";
 
 	return out;
 }

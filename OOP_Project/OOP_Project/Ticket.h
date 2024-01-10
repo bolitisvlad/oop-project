@@ -24,6 +24,8 @@ public:
 
 	void setVip(bool isVip);
 
+	bool getVip();
+
 	int getId();
 
 	int getRow();
